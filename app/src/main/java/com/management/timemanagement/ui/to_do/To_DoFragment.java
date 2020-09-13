@@ -2,6 +2,9 @@ package com.management.timemanagement.ui.to_do;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -20,6 +23,7 @@ public class To_DoFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         toDoViewModel = ViewModelProviders.of(this).get(To_DoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_to_do, container, false);
         final TextView textView = root.findViewById(R.id.textView);
@@ -30,5 +34,22 @@ public class To_DoFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.action_bar_menu, menu);
+
+        MenuItem add_btn = menu.getItem(R.id.add_task);
+
+        add_btn.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                ////////////////////////////////
+                return false;
+            }
+        });
+
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }
