@@ -11,6 +11,7 @@
         android:id="@+id/task_name_layout"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/task_name_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_add_task_name"/>
@@ -23,6 +24,7 @@
         android:layout_below="@+id/task_name_layout"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/task_description_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_add_task_description"/>
