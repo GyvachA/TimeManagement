@@ -33,11 +33,11 @@ public class DBAdapter {
         db.insert(DBHelper.TABLE_NAME, DBHelper.COLUMN_ID, cv);
     }
 
-    void delete(int pos) {
+    public void delete(int pos) {
         db.delete(DBHelper.TABLE_NAME, "_id = ?", new String[]{String.valueOf(pos)});
     }
 
-    Cursor getTaskDetails() {
+    public Cursor getTaskDetails() {
         String[] columns = {DBHelper.COLUMN_ID, DBHelper.COLUMN_TASK, DBHelper.COLUMN_DESCRIPTION};
 
         return db.query(DBHelper.TABLE_NAME, columns,

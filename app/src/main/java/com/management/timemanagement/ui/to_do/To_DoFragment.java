@@ -1,6 +1,7 @@
 package com.management.timemanagement.ui.to_do;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,24 +15,42 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.management.timemanagement.R;
+import com.management.timemanagement.data.local.DBAdapter;
 import com.management.timemanagement.ui.add.AddActivity;
+import com.management.timemanagement.ui.task_recyclerview.TasksAdapter;
+import com.management.timemanagement.utils.Task;
+
+import java.util.ArrayList;
 
 public class To_DoFragment extends Fragment {
+
+    private RecyclerView tasks_rv;
+    private TasksAdapter adapter;
+    private ArrayList<Task> tasks_list = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         To_DoViewModel toDoViewModel = new ViewModelProvider(this).get(To_DoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_to_do, container, false);
-        final TextView textView = root.findViewById(R.id.textView);
-        toDoViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                textView.setText(s);
-            }
-        });
+//        final TextView textView = root.findViewById(R.id.textView);
+//        toDoViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+//            @Override
+//            public void onChanged(String s) {
+//                textView.setText(s);
+//            }
+//        });
+
+        tasks_rv = root.findViewById(R.id.task_list_rv);
+        tasks_rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new TasksAdapter(tasks_list);
+        refresh();
+        tasks_rv.setAdapter(adapter);
+
         return root;
     }
 
@@ -51,5 +70,23 @@ public class To_DoFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void refresh() {
+        DBAdapter db = new DBAdapter(getContext());
+        db.openDB();
+
+        tasks_list.clear();
+
+        Cursor cursor = db.getTaskDetails();
+
+
+        while(cursor.moveToNext()) {
+            tasks_list.add(new Task(cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2)));
+        }
+
+        db.closeDB();
     }
 }

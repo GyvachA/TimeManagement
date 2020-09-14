@@ -6,7 +6,7 @@ public class Task {
     private String task;
     private String desc;
 
-    Task(int _id, String _task, String _desc) {
+    public Task(int _id, String _task, String _desc) {
         id = _id;
         task = _task;
         desc = _desc;
@@ -22,13 +22,13 @@ public class Task {
         desc = _desc;
     }
 
-    int getId() {
+    public int getId() {
         return id;
     }
-    String getTask() {
+    public String getTask() {
         return task;
     }
-    String getDesc() {
+    public String getDesc() {
         return desc;
     }
 
