@@ -35,6 +35,7 @@ public class To_DoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
+        
         To_DoViewModel toDoViewModel = new ViewModelProvider(this).get(To_DoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_to_do, container, false);
 //        final TextView textView = root.findViewById(R.id.textView);

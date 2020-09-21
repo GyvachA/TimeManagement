@@ -6,4 +6,5 @@
     <string name="action_add">add</string>
     <string name="tasks">Задачи</string>
     <string name="settings">Настройки</string>
+    <string name="projects">Проекты</string>
 </resources>

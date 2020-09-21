@@ -23,6 +23,8 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
+        setTitle("Добавить задачу");
+
         task_name_et = findViewById(R.id.task_name_et);
         task_description_et = findViewById(R.id.task_description_et);
 

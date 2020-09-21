@@ -3,11 +3,18 @@
 
     <item
         android:id="@+id/nav_to_do"
+        android:icon="@drawable/ic_baseline_todo"
         android:title="@string/tasks"
         />
     <item
         android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_action_settings"
         android:title="@string/settings"
+        />
+    <item
+        android:id="@+id/nav_project"
+        android:icon="@drawable/ic_action_projects"
+        android:title="@string/projects"
         />
 
 </menu>

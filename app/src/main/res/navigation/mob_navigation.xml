@@ -8,13 +8,19 @@
     <fragment
         android:id="@+id/nav_to_do"
         android:name="com.management.timemanagement.ui.to_do.To_DoFragment"
-        android:label="to-do"
+        android:label="Задачи"
         tools:layout="@layout/fragment_to_do"
         />
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.management.timemanagement.ui.settings.SettingsFragment"
-        android:label="settings"
+        android:label="Настройки"
+        tools:layout="@layout/fragment_settings"
+        />
+    <fragment
+        android:id="@+id/nav_project"
+        android:name="com.management.timemanagement.ui.project.ProjectFragment"
+        android:label="Проекты"
         tools:layout="@layout/fragment_settings"
         />
 </navigation>

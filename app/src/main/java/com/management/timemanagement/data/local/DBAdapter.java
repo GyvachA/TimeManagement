@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class DBAdapter {
 
-    public SQLiteDatabase db;
+    protected SQLiteDatabase db;
     private DBHelper helper;
     private Context c;
 
@@ -34,7 +34,12 @@ public class DBAdapter {
     }
 
     public int delete(int pos) {
-        return db.delete(DBHelper.TABLE_NAME, "_id = ?", new String[]{String.valueOf(pos)});
+        int check = db.delete(DBHelper.TABLE_NAME, "_id = ?", new String[]{String.valueOf(pos)});
+        if(check != 0) {
+            return check;
+        } else {
+            return -1;
+        }
     }
 
     public Cursor getTaskDetails() {
