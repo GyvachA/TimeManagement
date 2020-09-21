@@ -1,3 +1,5 @@
+apply plugin: 'java'
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
@@ -17,6 +19,18 @@ allprojects {
         google()
         jcenter()
     }
+}
+
+test {
+    useJUnitPlatform()
+    begoreTest { descriptor ->
+        logger.lifecycle("Запуск теста: " + descriptor)
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-api:5.3.1'
 }
 
 task clean(type: Delete) {
