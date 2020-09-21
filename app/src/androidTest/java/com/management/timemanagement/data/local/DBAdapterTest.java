@@ -28,7 +28,7 @@ public class DBAdapterTest {
     @Test
     public void add() {
         adapter.openDB();
-        adapter.add("task ", "desc 1");
+        adapter.add("task ", "desc 1", 0);
         Assert.assertNotNull(adapter.db.query("Tasks", new String[] {"task"},
                 "task=?", new String[] {"task 1"},
                 null, null, null));
@@ -38,7 +38,7 @@ public class DBAdapterTest {
     @Test
     public void getTaskDetails() {
         adapter.openDB();
-        Assert.assertNotNull(adapter.getTaskDetails());
+        Assert.assertNotNull(adapter.getTaskDetailsNotReady());
         adapter.closeDB();
     }
 }

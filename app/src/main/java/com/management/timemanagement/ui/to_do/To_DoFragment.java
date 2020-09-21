@@ -9,11 +9,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -79,7 +77,7 @@ public class To_DoFragment extends Fragment {
 
         tasks_list.clear();
 
-        Cursor cursor = db.getTaskDetails();
+        Cursor cursor = db.getTaskDetailsNotReady();
 
 
         while(cursor.moveToNext()) {

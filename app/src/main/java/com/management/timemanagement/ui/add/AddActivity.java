@@ -64,7 +64,7 @@ public class AddActivity extends AppCompatActivity {
     public void save(String task, String description) {
         DBAdapter db = new DBAdapter(this);
         db.openDB();
-        db.add(task, description);
+        db.add(task, description, 0);
         db.closeDB();
     }
 }

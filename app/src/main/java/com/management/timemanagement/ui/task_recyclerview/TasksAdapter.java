@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,6 +42,19 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksHolder> {
     public void onBindViewHolder(@NonNull final TasksHolder holder, final int position) {
         holder.task_name_tv.setText(tasks.get(position).getTask());
         holder.task_desc_tv.setText(tasks.get(position).getDesc());
+
+        holder.task_status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    int pos = holder.getAdapterPosition();
+
+                    if(pos != -1) {
+                        upgrade(pos, tasks.get(pos).getTask(), tasks.get(pos).getDesc(), 1);
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -51,6 +66,15 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksHolder> {
         DBAdapter db = new DBAdapter(c);
         db.openDB();
         db.delete(tasks.get(pos).getId());
+        db.closeDB();
+        tasks.remove(pos);
+        notifyItemRemoved(pos);
+    }
+
+    private void upgrade(int pos, String task, String desk, int status) {
+        DBAdapter db = new DBAdapter(c);
+        db.openDB();
+        db.upgrade(pos, task, desk, status);
         db.closeDB();
         tasks.remove(pos);
         notifyItemRemoved(pos);

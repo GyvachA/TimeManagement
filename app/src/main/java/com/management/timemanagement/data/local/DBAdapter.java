@@ -25,10 +25,11 @@ public class DBAdapter {
         helper.close();
     }
 
-    public void add(String task, String desc) {
+    public void add(String task, String desc, int status) {
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_TASK, task);
         cv.put(DBHelper.COLUMN_DESCRIPTION, desc);
+        cv.put(DBHelper.COLUMN_STATUS, status);
 
         db.insert(DBHelper.TABLE_NAME, DBHelper.COLUMN_ID, cv);
     }
@@ -42,17 +43,18 @@ public class DBAdapter {
         }
     }
 
-    public Cursor getTaskDetails() {
+    public Cursor getTaskDetailsNotReady() {
         String[] columns = {DBHelper.COLUMN_ID, DBHelper.COLUMN_TASK, DBHelper.COLUMN_DESCRIPTION};
 
         return db.query(DBHelper.TABLE_NAME, columns,
-                null, null, null, null, null);
+                "status=?", new String[] {"0"}, null, null, null);
     }
 
-    void upgrade(int id, String task, String desc) {
+    public void upgrade(int id, String task, String desc, int status) {
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_TASK, task);
         cv.put(DBHelper.COLUMN_DESCRIPTION, desc);
+        cv.put(DBHelper.COLUMN_STATUS, status);
 
         db.update(DBHelper.TABLE_NAME, cv, DBHelper.COLUMN_ID + " = ?",
                 new String[]{String.valueOf(id)});
