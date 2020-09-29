@@ -58,6 +58,12 @@ public class DBAdapter {
         return db.query(DBHelper.TABLE_NAME, columns,
                 "status=?", new String[] {"0"}, null, null, null);
     }
+    public Cursor getTaskDetailsReady() {
+        String[] columns = {DBHelper.COLUMN_ID, DBHelper.COLUMN_TASK, DBHelper.COLUMN_DESCRIPTION};
+
+        return db.query(DBHelper.TABLE_NAME, columns,
+                "status=?", new String[] {"1"}, null, null, null);
+    }
 
     public Cursor getProjectDetails() {
         String[] columns = {DBHelper.COLUMN_ID, DBHelper.PROJECT_COLOR, DBHelper.PROJECT_TITLE,

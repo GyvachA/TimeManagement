@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.management.timemanagement.R;
 import com.management.timemanagement.data.local.DBAdapter;
 import com.management.timemanagement.ui.task_add.AddActivity;
+import com.management.timemanagement.ui.task_ready.ReadyTaskActivity;
 import com.management.timemanagement.ui.task_recyclerview.TasksAdapter;
 import com.management.timemanagement.utils.Task;
 
@@ -54,9 +55,14 @@ public class To_DoFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.add_task:
-                Intent intent = new Intent(getActivity(), AddActivity.class);
+                intent = new Intent(getActivity(), AddActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.ready_list:
+                intent = new Intent(getActivity(), ReadyTaskActivity.class);
                 startActivity(intent);
                 return true;
             default:

@@ -1,6 +1,7 @@
 package com.management.timemanagement.ui.task_recyclerview;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.management.timemanagement.data.local.DBAdapter;
+import com.management.timemanagement.ui.task_add.AddActivity;
 import com.management.timemanagement.utils.Task;
 
 import java.util.ArrayList;
@@ -55,6 +57,12 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksHolder> {
                 }
             }
         });
+
+        Log.d("GGGG", c.getPackageName() + "Message");
+
+        if(c.getApplicationInfo().className == "AddActivity") {
+            holder.task_status.setEnabled(false);
+        }
     }
 
     @Override

@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,6 +40,13 @@ public class ProjectFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_project, container, false);
         setHasOptionsMenu(true);
         refresh();
+
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(false);
+        }
+
 
         projects_rv = root.findViewById(R.id.projects_rv);
         adapter = new ProjectAdapter(projects);
