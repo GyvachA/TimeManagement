@@ -19,9 +19,21 @@ public class DBAdapterTest {
     }
 
     @Test
-    public void getTaskDetails() {
+    public void getTaskDetailsNotReady() {
         adapter.openDB();
         Assert.assertNotNull(adapter.getTaskDetailsNotReady());
+        adapter.closeDB();
+    }
+    @Test
+    public void getTaskDetailsReady() {
+        adapter.openDB();
+        Assert.assertNotNull(adapter.getTaskDetailsReady());
+        adapter.closeDB();
+    }
+    @Test
+    public void getProjectDetails() {
+        adapter.openDB();
+        Assert.assertNotNull(adapter.getProjectDetails());
         adapter.closeDB();
     }
     @Test
