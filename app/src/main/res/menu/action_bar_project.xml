@@ -2,14 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/ready_list"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_outline_check_circle"
-        android:title="ready"
-        />
-
-    <item
-        android:id="@+id/add_task"
+        android:id="@+id/add_project"
         app:showAsAction="always"
         android:icon="@drawable/ic_action_add"
         android:title="@string/action_add"

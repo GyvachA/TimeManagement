@@ -74,7 +74,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksHolder> {
     private void upgrade(int pos, String task, String desk, int status) {
         DBAdapter db = new DBAdapter(c);
         db.openDB();
-        db.upgrade(pos, task, desk, status);
+        db.upgrade(tasks.get(pos).getId(), task, desk, status);
         db.closeDB();
         tasks.remove(pos);
         notifyItemRemoved(pos);

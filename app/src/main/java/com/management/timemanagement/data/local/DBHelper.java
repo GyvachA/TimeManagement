@@ -14,6 +14,12 @@ public class DBHelper extends SQLiteOpenHelper {
     static final String COLUMN_DESCRIPTION = "description";
     static final String COLUMN_STATUS = "status";
 
+    static final String TABLE_PROJECT = "Projects";
+    static final String PROJECT_COLOR = "color";
+    static final String PROJECT_TITLE = "title";
+    static final String PROJECT_STATUS = "status";
+
+
     DBHelper(Context c) {
         super(c, DB_NAME, null, SCHEMA);
     }
@@ -23,11 +29,15 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_NAME +
                 "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_TASK +
                 " TEXT, " + COLUMN_DESCRIPTION + " TEXT, " + COLUMN_STATUS + " INTEGER NOT NULL);");
+        db.execSQL("CREATE TABLE " + TABLE_PROJECT +
+                "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PROJECT_COLOR +
+                " TEXT, " + PROJECT_TITLE + " TEXT, " + PROJECT_STATUS + " INTEGER NOT NULL);");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME + ";");
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROJECT + ";");
         onCreate(db);
     }
 

@@ -1,38 +1,36 @@
-package com.management.timemanagement.ui.add;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
+package com.management.timemanagement.ui.project_add;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputEditText;
 import com.management.timemanagement.R;
 import com.management.timemanagement.data.local.DBAdapter;
 
-public class AddActivity extends AppCompatActivity {
-
-    TextInputEditText task_name_et;
-    TextInputEditText task_description_et;
+public class AddProjectActivity extends AppCompatActivity {
+    TextInputEditText project_title_et;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
+        setContentView(R.layout.activity_project_add);
 
-        setTitle("Добавить задачу");
+        setTitle("Добавить проект");
 
-        task_name_et = findViewById(R.id.task_name_et);
-        task_description_et = findViewById(R.id.task_description_et);
+        project_title_et = findViewById(R.id.project_name_et);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
     }
 
     @Override
@@ -48,11 +46,11 @@ public class AddActivity extends AppCompatActivity {
                 this.finish();
                 return true;
             case R.id.confirm:
-                String task_name = task_name_et.getText().toString();
-                if(task_name.length() == 0)
-                    Toast.makeText(getApplicationContext(), "Пустая задача", Toast.LENGTH_SHORT).show();
+                String project_name = project_title_et.getText().toString();
+                if(project_name.length() == 0)
+                    Toast.makeText(getApplicationContext(), "Пустое название", Toast.LENGTH_SHORT).show();
                 else {
-                    save(task_name, task_description_et.getText().toString());
+                    save(project_name, "0", 0);
                     this.finish();
                     return true;
                 }
@@ -61,10 +59,11 @@ public class AddActivity extends AppCompatActivity {
         }
     }
 
-    public void save(String task, String description) {
+    public void save(String name, String color, int status) {
         DBAdapter db = new DBAdapter(this);
         db.openDB();
-        db.add(task, description, 0);
+        db.addProject(name, color, status);
         db.closeDB();
     }
+
 }

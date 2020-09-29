@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.management.timemanagement.R;
 import com.management.timemanagement.data.local.DBAdapter;
-import com.management.timemanagement.ui.add.AddActivity;
+import com.management.timemanagement.ui.task_add.AddActivity;
 import com.management.timemanagement.ui.task_recyclerview.TasksAdapter;
 import com.management.timemanagement.utils.Task;
 
@@ -36,13 +36,6 @@ public class To_DoFragment extends Fragment {
         
         To_DoViewModel toDoViewModel = new ViewModelProvider(this).get(To_DoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_to_do, container, false);
-//        final TextView textView = root.findViewById(R.id.textView);
-//        toDoViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(String s) {
-//                textView.setText(s);
-//            }
-//        });
 
         tasks_rv = root.findViewById(R.id.task_list_rv);
         tasks_rv.setLayoutManager(new LinearLayoutManager(getContext()));

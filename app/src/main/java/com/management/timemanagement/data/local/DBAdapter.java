@@ -34,6 +34,15 @@ public class DBAdapter {
         db.insert(DBHelper.TABLE_NAME, DBHelper.COLUMN_ID, cv);
     }
 
+    public void addProject(String title, String color, int status) {
+        ContentValues cv = new ContentValues();
+        cv.put(DBHelper.PROJECT_COLOR, color);
+        cv.put(DBHelper.PROJECT_TITLE, title);
+        cv.put(DBHelper.PROJECT_STATUS, status);
+
+        db.insert(DBHelper.TABLE_PROJECT, DBHelper.COLUMN_ID, cv);
+    }
+
     public int delete(int pos) {
         int check = db.delete(DBHelper.TABLE_NAME, "_id = ?", new String[]{String.valueOf(pos)});
         if(check != 0) {
@@ -48,6 +57,14 @@ public class DBAdapter {
 
         return db.query(DBHelper.TABLE_NAME, columns,
                 "status=?", new String[] {"0"}, null, null, null);
+    }
+
+    public Cursor getProjectDetails() {
+        String[] columns = {DBHelper.COLUMN_ID, DBHelper.PROJECT_COLOR, DBHelper.PROJECT_TITLE,
+        DBHelper.PROJECT_STATUS};
+
+        return db.query(DBHelper.TABLE_PROJECT, columns, null, null, null,
+                null, null);
     }
 
     public void upgrade(int id, String task, String desc, int status) {
