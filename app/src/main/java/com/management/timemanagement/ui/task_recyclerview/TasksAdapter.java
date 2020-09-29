@@ -58,11 +58,6 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksHolder> {
             }
         });
 
-        Log.d("GGGG", c.getPackageName() + "Message");
-
-        if(c.getApplicationInfo().className == "AddActivity") {
-            holder.task_status.setEnabled(false);
-        }
     }
 
     @Override
