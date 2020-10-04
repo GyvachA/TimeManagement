@@ -1,7 +1,5 @@
 package com.management.timemanagement.ui.task_recyclerview;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -10,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.management.timemanagement.R;
-import com.management.timemanagement.ui.task_add.AddActivity;
 
 class TasksHolder extends RecyclerView.ViewHolder {
 

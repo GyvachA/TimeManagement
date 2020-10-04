@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,6 +55,7 @@ public class AddActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Пустая задача", Toast.LENGTH_SHORT).show();
                 else {
                     save(task_name, task_description_et.getText().toString());
+                    setResult(Activity.RESULT_OK, this.getIntent());
                     this.finish();
                     return true;
                 }

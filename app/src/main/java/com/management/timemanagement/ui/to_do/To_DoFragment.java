@@ -1,8 +1,10 @@
 package com.management.timemanagement.ui.to_do;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -59,7 +62,7 @@ public class To_DoFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.add_task:
                 intent = new Intent(getActivity(), AddActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
                 return true;
             case R.id.ready_list:
                 intent = new Intent(getActivity(), ReadyTaskActivity.class);
@@ -67,6 +70,15 @@ public class To_DoFragment extends Fragment {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == 1) {
+            refresh();
+            adapter.notifyDataSetChanged();
         }
     }
 

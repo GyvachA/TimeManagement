@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="20dp">
 
     <TextView
         android:id="@+id/task_ready_name_tv"
         android:textColor="@color/material_on_background_emphasis_high_type"
         android:lines="1"
-        android:paddingRight="65dp"
+        android:paddingRight="110dp"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_width="match_parent"/>
@@ -15,10 +17,26 @@
         android:id="@+id/task_ready_description_tv"
         android:layout_height="wrap_content"
         android:lines="1"
-        android:paddingRight="65dp"
+        android:paddingRight="110dp"
         android:textSize="18sp"
         android:layout_width="match_parent"
-        android:layout_below="@+id/task_name_tv"/>
+        android:layout_below="@+id/task_ready_name_tv"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/task_ready_delete"
+        android:layout_alignParentRight="true"
+        app:icon="@drawable/ic_baseline_delete"
+        style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/task_ready_restore"
+        android:layout_toLeftOf="@+id/task_ready_delete"
+        app:icon="@drawable/ic_baseline_undo"
+        style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+        />
 
 </RelativeLayout>

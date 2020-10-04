@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.management.timemanagement.R;
 import com.management.timemanagement.data.local.DBAdapter;
 import com.management.timemanagement.ui.task_recyclerview.TasksAdapter;
+import com.management.timemanagement.ui.task_recyclerview.TasksReadyAdapter;
 import com.management.timemanagement.utils.Task;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 public class ReadyTaskActivity extends AppCompatActivity {
 
     private RecyclerView tasks_rv;
-    private TasksAdapter adapter;
+    private TasksReadyAdapter adapter;
     private ArrayList<Task> tasks_list = new ArrayList<>();
 
     @Override
@@ -41,7 +42,7 @@ public class ReadyTaskActivity extends AppCompatActivity {
 
         tasks_rv = findViewById(R.id.task_list_ready_rv);
         tasks_rv.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new TasksAdapter(tasks_list);
+        adapter = new TasksReadyAdapter(tasks_list);
 
         tasks_rv.setAdapter(adapter);
     }

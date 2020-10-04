@@ -3,6 +3,7 @@ package com.management.timemanagement.ui.project_rv;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,22 +14,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.management.timemanagement.R;
 import com.management.timemanagement.utils.Project;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectsViewHolder> {
-    List<Project> projects = new ArrayList<>();
+    List<Project> projects;
 
     public ProjectAdapter(List<Project> projects) {
         this.projects = projects;
     }
 
     public static class ProjectsViewHolder extends RecyclerView.ViewHolder{
-        public ImageView cardColor;
-        public ImageView cardStatus;
-        public TextView titleCard;
-        public ImageButton editBtn;
-        public ImageButton deleteBtn;
+        private ImageView cardColor;
+        private ImageView cardStatus;
+        private TextView titleCard;
+        private Button editBtn;
+        private Button deleteBtn;
 
         public ProjectsViewHolder(@NonNull View itemView) {
             super(itemView);

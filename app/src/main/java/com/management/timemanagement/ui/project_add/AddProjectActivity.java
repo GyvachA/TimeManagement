@@ -1,5 +1,6 @@
 package com.management.timemanagement.ui.project_add;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,6 +52,7 @@ public class AddProjectActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Пустое название", Toast.LENGTH_SHORT).show();
                 else {
                     save(project_name, "0", 0);
+                    setResult(Activity.RESULT_OK, this.getIntent());
                     this.finish();
                     return true;
                 }
