@@ -3,7 +3,7 @@ name: Release
 # Action will run on every pull-request to master branch
 # 05.10.2020: release app can't be signed now, so it builds debug version. It will be fixed at the next sprint
 on:
-  pull-request:
+  pull_request:
     branches:
 	  - master
 
