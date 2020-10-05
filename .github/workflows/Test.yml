@@ -6,11 +6,11 @@ name: Tests
 on:
   push:
     branches: 
-    - Development
+      - Development
   pull_request:
-    branches: 
-    - Development
-    - master
+    branches:
+      - Development
+      - master
 
 jobs:
   Unit:
