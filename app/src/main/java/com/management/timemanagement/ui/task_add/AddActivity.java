@@ -55,7 +55,7 @@ public class AddActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Пустая задача", Toast.LENGTH_SHORT).show();
                 else {
                     save(task_name, task_description_et.getText().toString());
-                    setResult(Activity.RESULT_OK, this.getIntent());
+                    setResult(Activity.RESULT_OK);
                     this.finish();
                     return true;
                 }

@@ -2,11 +2,11 @@ package com.management.timemanagement.utils;
 
 public class Project {
     private int id;
-    private String cardColor;
+    private int cardColor;
     private String title;
     private int status;
 
-    public Project(int id, String cardColor, String title, int status) {
+    public Project(int id, int cardColor, String title, int status) {
         this.id = id;
         this.cardColor = cardColor;
         this.title = title;
@@ -17,7 +17,7 @@ public class Project {
         return id;
     }
 
-    public String getCardColor() {
+    public int getCardColor() {
         return cardColor;
     }
 

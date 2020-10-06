@@ -31,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 " TEXT, " + COLUMN_DESCRIPTION + " TEXT, " + COLUMN_STATUS + " INTEGER NOT NULL);");
         db.execSQL("CREATE TABLE " + TABLE_PROJECT +
                 "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + PROJECT_COLOR +
-                " TEXT, " + PROJECT_TITLE + " TEXT, " + PROJECT_STATUS + " INTEGER NOT NULL);");
+                " INTEGER, " + PROJECT_TITLE + " TEXT, " + PROJECT_STATUS + " INTEGER NOT NULL);");
     }
 
     @Override

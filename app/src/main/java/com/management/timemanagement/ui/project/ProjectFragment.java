@@ -88,7 +88,7 @@ public class ProjectFragment extends Fragment {
 
         while(cursor.moveToNext()) {
             projects.add(new Project(cursor.getInt(0),
-                    cursor.getString(1),
+                    cursor.getInt(1),
                     cursor.getString(2),
                     cursor.getInt(3)));
         }

@@ -45,7 +45,7 @@ public class TasksReadyAdapter extends RecyclerView.Adapter<TasksReadyAdapter.Ta
                 int pos = holder.getAdapterPosition();
 
                 if(pos != -1){
-                    //upgrade(pos, tasks.get(pos).getTask(), tasks.get(pos).getDesc(), 0);
+                    upgrade(pos, tasks.get(pos).getTask(), tasks.get(pos).getDesc(), 0);
                 }
             }
         });
@@ -56,7 +56,7 @@ public class TasksReadyAdapter extends RecyclerView.Adapter<TasksReadyAdapter.Ta
                 int pos = holder.getAdapterPosition();
 
                 if(pos != -1){
-                    //del(pos);
+                    del(pos);
                 }
             }
         });

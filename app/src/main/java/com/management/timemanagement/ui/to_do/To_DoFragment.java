@@ -66,7 +66,7 @@ public class To_DoFragment extends Fragment {
                 return true;
             case R.id.ready_list:
                 intent = new Intent(getActivity(), ReadyTaskActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

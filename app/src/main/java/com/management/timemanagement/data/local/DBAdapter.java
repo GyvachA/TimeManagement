@@ -34,7 +34,7 @@ public class DBAdapter {
         db.insert(DBHelper.TABLE_NAME, DBHelper.COLUMN_ID, cv);
     }
 
-    public void addProject(String title, String color, int status) {
+    public void addProject(String title, int color, int status) {
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.PROJECT_COLOR, color);
         cv.put(DBHelper.PROJECT_TITLE, title);

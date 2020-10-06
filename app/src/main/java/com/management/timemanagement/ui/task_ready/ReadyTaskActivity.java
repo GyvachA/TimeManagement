@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -51,6 +52,7 @@ public class ReadyTaskActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
+                setResult(Activity.RESULT_OK);
                 this.finish();
                 return true;
             default:

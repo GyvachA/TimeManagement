@@ -50,6 +50,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.Projects
     @Override
     public void onBindViewHolder(@NonNull ProjectsViewHolder holder, int position) {
         holder.titleCard.setText(projects.get(position).getTitle());
+        holder.cardColor.setBackgroundColor(projects.get(position).getCardColor());
     }
 
     @Override
