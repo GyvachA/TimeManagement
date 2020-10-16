@@ -1,6 +1,8 @@
 package com.management.timemanagement.ui.task_recyclerview;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.management.timemanagement.data.local.DBAdapter;
+import com.management.timemanagement.ui.project_add.EditProjectActivity;
+import com.management.timemanagement.ui.task_add.EditTaskActivity;
 import com.management.timemanagement.utils.Task;
 
 import java.util.ArrayList;
@@ -56,6 +60,19 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksHolder> {
             }
         });
 
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(c, EditTaskActivity.class);
+                int pos = holder.getAdapterPosition();
+                if (pos != -1) {
+                    i.putExtra("id", pos);
+                    i.putExtra("task", tasks.get(pos).getTask());
+                    i.putExtra("desc", tasks.get(pos).getDesc());
+                    ((Activity) c).startActivityForResult(i, 2);
+                }
+            }
+        });
     }
 
     @Override
@@ -66,7 +83,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksHolder> {
     private void delete(int pos) { //
         DBAdapter db = new DBAdapter(c);
         db.openDB();
-        db.delete(tasks.get(pos).getId());
+        db.deleteTask(tasks.get(pos).getId());
         db.closeDB();
         tasks.remove(pos);
         notifyItemRemoved(pos);
@@ -75,7 +92,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksHolder> {
     private void upgrade(int pos, String task, String desk, int status) {
         DBAdapter db = new DBAdapter(c);
         db.openDB();
-        db.upgrade(tasks.get(pos).getId(), task, desk, status);
+        db.upgradeTask(tasks.get(pos).getId(), task, desk, status);
         db.closeDB();
         tasks.remove(pos);
         notifyItemRemoved(pos);

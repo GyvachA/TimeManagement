@@ -43,9 +43,18 @@ public class DBAdapter {
         db.insert(DBHelper.TABLE_PROJECT, DBHelper.COLUMN_ID, cv);
     }
 
-    public int delete(int pos) {
+    public int deleteTask(int pos) {
         int check = db.delete(DBHelper.TABLE_NAME, "_id = ?", new String[]{String.valueOf(pos)});
-        if(check != 0) {
+        if (check != 0) {
+            return check;
+        } else {
+            return -1;
+        }
+    }
+
+    public int deleteProject(int pos) {
+        int check = db.delete(DBHelper.TABLE_PROJECT, "_id = ?", new String[]{String.valueOf(pos)});
+        if (check != 0) {
             return check;
         } else {
             return -1;
@@ -56,30 +65,41 @@ public class DBAdapter {
         String[] columns = {DBHelper.COLUMN_ID, DBHelper.COLUMN_TASK, DBHelper.COLUMN_DESCRIPTION};
 
         return db.query(DBHelper.TABLE_NAME, columns,
-                "status=?", new String[] {"0"}, null, null, null);
+                "status=?", new String[]{"0"}, null, null, null);
     }
+
     public Cursor getTaskDetailsReady() {
         String[] columns = {DBHelper.COLUMN_ID, DBHelper.COLUMN_TASK, DBHelper.COLUMN_DESCRIPTION};
 
         return db.query(DBHelper.TABLE_NAME, columns,
-                "status=?", new String[] {"1"}, null, null, null);
+                "status=?", new String[]{"1"}, null, null, null);
     }
 
     public Cursor getProjectDetails() {
         String[] columns = {DBHelper.COLUMN_ID, DBHelper.PROJECT_COLOR, DBHelper.PROJECT_TITLE,
-        DBHelper.PROJECT_STATUS};
+                DBHelper.PROJECT_STATUS};
 
         return db.query(DBHelper.TABLE_PROJECT, columns, null, null, null,
                 null, null);
     }
 
-    public void upgrade(int id, String task, String desc, int status) {
+    public void upgradeTask(int id, String task, String desc, int status) {
         ContentValues cv = new ContentValues();
         cv.put(DBHelper.COLUMN_TASK, task);
         cv.put(DBHelper.COLUMN_DESCRIPTION, desc);
         cv.put(DBHelper.COLUMN_STATUS, status);
 
         db.update(DBHelper.TABLE_NAME, cv, DBHelper.COLUMN_ID + " = ?",
+                new String[]{String.valueOf(id)});
+    }
+
+    public void upgradeProject(int id, int color, String title, int status) {
+        ContentValues cv = new ContentValues();
+        cv.put(DBHelper.PROJECT_COLOR, color);
+        cv.put(DBHelper.PROJECT_TITLE, title);
+        cv.put(DBHelper.PROJECT_STATUS, status);
+
+        db.update(DBHelper.TABLE_PROJECT, cv, DBHelper.COLUMN_ID + " = ?",
                 new String[]{String.valueOf(id)});
     }
 

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
-        <activity android:name=".ui.task_ready.ReadyTaskActivity"></activity>
+        <activity android:name=".ui.task_add.EditTaskActivity"></activity>
+        <activity android:name=".ui.project_add.EditProjectActivity" />
+        <activity android:name=".ui.task_ready.ReadyTaskActivity" />
         <activity android:name=".ui.task_add.AddActivity" />
         <activity android:name=".ui.project_add.AddProjectActivity" />
         <activity android:name=".MainActivity">

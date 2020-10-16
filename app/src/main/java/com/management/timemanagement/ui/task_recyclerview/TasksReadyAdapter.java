@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -55,9 +54,8 @@ public class TasksReadyAdapter extends RecyclerView.Adapter<TasksReadyAdapter.Ta
             public void onClick(View v) {
                 int pos = holder.getAdapterPosition();
 
-                if(pos != -1){
+                if(pos != -1)
                     del(pos);
-                }
             }
         });
     }
@@ -85,7 +83,7 @@ public class TasksReadyAdapter extends RecyclerView.Adapter<TasksReadyAdapter.Ta
     private void upgrade(int pos, String task, String desk, int status) {
         DBAdapter db = new DBAdapter(c);
         db.openDB();
-        db.upgrade(tasks.get(pos).getId(), task, desk, status);
+        db.upgradeTask(tasks.get(pos).getId(), task, desk, status);
         db.closeDB();
         tasks.remove(pos);
         notifyItemRemoved(pos);
@@ -94,7 +92,7 @@ public class TasksReadyAdapter extends RecyclerView.Adapter<TasksReadyAdapter.Ta
     private void del(int pos) {
         DBAdapter db = new DBAdapter(c);
         db.openDB();
-        db.delete(pos);
+        db.deleteTask(pos);
         db.closeDB();
         tasks.remove(pos);
         notifyItemRemoved(pos);
