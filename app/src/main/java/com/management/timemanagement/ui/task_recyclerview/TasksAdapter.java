@@ -45,6 +45,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksHolder> {
     public void onBindViewHolder(@NonNull final TasksHolder holder, final int position) {
         holder.task_name_tv.setText(tasks.get(position).getTask());
         holder.task_desc_tv.setText(tasks.get(position).getDesc());
+        holder.task_status.setChecked(false);
 
         holder.task_status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -53,7 +54,6 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksHolder> {
                     int pos = holder.getAdapterPosition();
 
                     if(pos != -1) {
-                        holder.task_status.setChecked(false);
                         upgrade(pos, tasks.get(pos).getTask(), tasks.get(pos).getDesc(), 1);
                     }
                 }
@@ -66,7 +66,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksHolder> {
                 Intent i = new Intent(c, EditTaskActivity.class);
                 int pos = holder.getAdapterPosition();
                 if (pos != -1) {
-                    i.putExtra("id", pos);
+                    i.putExtra("id", tasks.get(pos).getId());
                     i.putExtra("task", tasks.get(pos).getTask());
                     i.putExtra("desc", tasks.get(pos).getDesc());
                     ((Activity) c).startActivityForResult(i, 2);

@@ -61,7 +61,7 @@ public class EditTaskActivity extends AppCompatActivity {
                 if(task.getTask().length() == 0)
                     Toast.makeText(getApplicationContext(), "Пустая задача", Toast.LENGTH_SHORT).show();
                 else {
-                    upgrade(task.getId() + 1, task.getTask(), task.getDesc(), 0);
+                    upgrade(task.getId(), task.getTask(), task.getDesc(), 0);
                     setResult(Activity.RESULT_OK);
                     this.finish();
                     return true;

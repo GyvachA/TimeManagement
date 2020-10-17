@@ -65,7 +65,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.Projects
                 Intent i = new Intent(c, EditProjectActivity.class);
                 int pos = holder.getAdapterPosition();
                 if (pos != -1) {
-                    i.putExtra("id", pos);
+                    i.putExtra("id", projects.get(pos).getId());
                     i.putExtra("color", projects.get(pos).getCardColor());
                     i.putExtra("title", projects.get(pos).getTitle());
                     i.putExtra("status", projects.get(pos).getStatus());

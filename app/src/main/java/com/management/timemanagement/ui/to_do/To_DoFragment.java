@@ -76,7 +76,7 @@ public class To_DoFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && requestCode == 1) {
+        if (resultCode == Activity.RESULT_OK && (requestCode == 1 || requestCode == 2)) {
             refresh();
             adapter.notifyDataSetChanged();
         }

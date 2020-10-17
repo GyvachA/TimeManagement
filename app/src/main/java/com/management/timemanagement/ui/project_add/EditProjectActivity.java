@@ -85,7 +85,7 @@ public class EditProjectActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Пустое название", Toast.LENGTH_SHORT).show();
                 else {
                     Log.d("TAG", project.toString());
-                    upgrade(project.getId() + 1, project.getCardColor(), project.getTitle(),
+                    upgrade(project.getId(), project.getCardColor(), project.getTitle(),
                             project.getStatus());
                     setResult(Activity.RESULT_OK, this.getIntent());
                     this.finish();
