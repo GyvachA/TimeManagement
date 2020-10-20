@@ -1,30 +1,53 @@
 apply plugin: 'com.android.application'
 
-def versionPropsFile = rootProject.file('version.properties')
-Properties versionProps = new Properties()
-versionProps.load(new FileInputStream(versionPropsFile))
-def verCode = versionProps['VERSION_CODE'].toInteger()
+def release_store_password
+def release_key_password
+def release_key_alias
+
+val buildNumber = (System.getenv("GITHUB_RUN_NUMBER") ?: "1").toInt()
+def keystoreProperties = new Properties()
+release_store_password = System.env.RELEASE_STORE_PASSWORD
+release_key_password = System.env.RELEASE_KEY_PASSWORD
+release_key_alias = System.env.RELEASE_KEY_ALIAS
 
 android {
     compileSdkVersion 29
+    ndkVersion '21.3.6528147'
 
     defaultConfig {
         applicationId "com.management.timemanagement"
         minSdkVersion 14
         targetSdkVersion 29
-        ndkVersion '21.2.6472646'
         versionCode verCode
-        versionName "1.0.$verCode"
+        versionName "1.0.$buildNumber"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        applicationVariants.all { variant ->
+            variant.outputs.each { output ->
+                def buildType = variant.buildType.name
+                output.outputFileName = "timemanagement" + "." + buildType + ".apk"
+            }
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
+
+    signingConfigs {
+        release {
+           storeFile file("release.keystore")
+           storePassword RELEASE_STORE_PASSWORD
+           keyAlias RELEASE_KEY_ALIAS
+           keyPassword RELEASE_KEY_PASSWORD
+       }
+    }
+
 }
 
 dependencies {
