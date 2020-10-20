@@ -10,6 +10,11 @@ release_store_password = System.env.RELEASE_STORE_PASSWORD
 release_key_password = System.env.RELEASE_KEY_PASSWORD
 release_key_alias = System.env.RELEASE_KEY_ALIAS
 
+def versionPropsFile = rootProject.file('version.properties')
+Properties versionProps = new Properties()
+versionProps.load(new FileInputStream(versionPropsFile))
+def verCode = versionProps['VERSION_CODE'].toInteger()
+
 android {
     compileSdkVersion 29
     ndkVersion '21.3.6528147'
@@ -19,7 +24,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 29
         versionCode verCode
-        versionName "1.0.$buildNumber"
+        versionName "1.0.$verCode"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
