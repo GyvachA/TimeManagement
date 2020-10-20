@@ -4,7 +4,7 @@ def release_store_password
 def release_key_password
 def release_key_alias
 
-val buildNumber = (System.getenv("GITHUB_RUN_NUMBER") ?: "1").toInt()
+val buildNumber = Integer.parseInt(System.getenv("GITHUB_RUN_NUMBER") ?: "1")
 def keystoreProperties = new Properties()
 release_store_password = System.env.RELEASE_STORE_PASSWORD
 release_key_password = System.env.RELEASE_KEY_PASSWORD
