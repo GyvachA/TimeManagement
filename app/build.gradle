@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 
+def versionPropsFile = rootProject.file('version.properties')
+Properties versionProps = new Properties()
+versionProps.load(new FileInputStream(versionPropsFile))
+def verCode = versionProps['VERSION_CODE'].toInteger()
+
 android {
     compileSdkVersion 29
 
@@ -7,8 +12,9 @@ android {
         applicationId "com.management.timemanagement"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        ndkVersion '21.2.6472646'
+        versionCode verCode
+        versionName "1.0.$verCode"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
