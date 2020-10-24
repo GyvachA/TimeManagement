@@ -12,15 +12,15 @@
         tools:layout="@layout/fragment_to_do"
         />
     <fragment
-        android:id="@+id/nav_settings"
-        android:name="com.management.timemanagement.ui.settings.SettingsFragment"
-        android:label="Настройки"
-        tools:layout="@layout/fragment_settings"
-        />
-    <fragment
         android:id="@+id/nav_project"
         android:name="com.management.timemanagement.ui.project.ProjectFragment"
         android:label="Проекты"
+        tools:layout="@layout/fragment_project"
+        />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.management.timemanagement.ui.settings.SettingsFragment"
+        android:label="Настройки"
         tools:layout="@layout/fragment_settings"
         />
 </navigation>

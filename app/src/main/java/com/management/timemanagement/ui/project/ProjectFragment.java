@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,9 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.management.timemanagement.R;
 import com.management.timemanagement.data.local.DBAdapter;
 import com.management.timemanagement.ui.project_add.AddProjectActivity;
-import com.management.timemanagement.ui.project_add.EditProjectActivity;
 import com.management.timemanagement.ui.project_rv.ProjectAdapter;
-import com.management.timemanagement.ui.task_add.AddActivity;
 import com.management.timemanagement.utils.Project;
 
 import java.util.ArrayList;
@@ -40,7 +37,6 @@ public class ProjectFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ProjectViewModel settingsViewModel = new ViewModelProvider(this).get(ProjectViewModel.class);
         View root = inflater.inflate(R.layout.fragment_project, container, false);
         setHasOptionsMenu(true);
         refresh();

@@ -3,7 +3,11 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="colorProj1">#4682B4</color>
-    <color name="colorProj2">#228B22</color>
-    <color name="colorProj3">#9932CC</color>
+    <color name="colorProj1">#377988</color>
+    <color name="colorProj2">#492F82</color>
+    <color name="colorProj3">#823A2A</color>
+    <color name="colorProj4">#452640</color>
+    <color name="colorProj5">#599C5F</color>
+    <color name="colorProj6">#BF807C</color>
+    <color name="actionbar_background">#000000</color>
 </resources>
