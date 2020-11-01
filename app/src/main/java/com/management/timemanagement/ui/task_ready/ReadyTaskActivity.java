@@ -72,7 +72,8 @@ public class ReadyTaskActivity extends AppCompatActivity {
         while(cursor.moveToNext()) {
             tasks_list.add(new Task(cursor.getInt(0),
                     cursor.getString(1),
-                    cursor.getString(2)));
+                    cursor.getString(2),
+                    0));
         }
 
         db.closeDB();

@@ -1,8 +1,4 @@
-package com.management.timemanagement.ui.task_add;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
+package com.management.timemanagement.ui.project;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,31 +6,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputEditText;
 import com.management.timemanagement.R;
 import com.management.timemanagement.data.local.DBAdapter;
-import com.management.timemanagement.utils.Task;
 
-public class EditTaskActivity extends AppCompatActivity {
-
+public class ProjectTaskAddActivity extends AppCompatActivity {
     TextInputEditText task_name_et;
     TextInputEditText task_description_et;
-    Task task;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-        setTitle("Редактировать задачу");
+
+        setTitle("Добавить подзадачу");
 
         task_name_et = findViewById(R.id.task_name_et);
         task_description_et = findViewById(R.id.task_description_et);
-
-        task = new Task(getIntent().getIntExtra("id", -1), getIntent().getStringExtra("task"),
-                getIntent().getStringExtra("desc"), 0);
-
-        task_name_et.setText(task.getTask());
-        task_description_et.setText(task.getDesc());
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -56,12 +48,12 @@ public class EditTaskActivity extends AppCompatActivity {
                 this.finish();
                 return true;
             case R.id.confirm:
-                task.setTask(task_name_et.getText().toString());
-                task.setDesc(task_description_et.getText().toString());
-                if(task.getTask().length() == 0)
+                String task_name = task_name_et.getText().toString();
+                if(task_name.length() == 0)
                     Toast.makeText(getApplicationContext(), "Пустая задача", Toast.LENGTH_SHORT).show();
                 else {
-                    upgrade(task.getId(), task.getTask(), task.getDesc(), 0);
+                    save(task_name, task_description_et.getText().toString(), 0,
+                            getIntent().getIntExtra("project_id", -1));
                     setResult(Activity.RESULT_OK);
                     this.finish();
                     return true;
@@ -71,10 +63,10 @@ public class EditTaskActivity extends AppCompatActivity {
         }
     }
 
-    private void upgrade(int id, String task, String desk, int status) {
+    public void save(String task, String desc, int status, int proj_id) {
         DBAdapter db = new DBAdapter(this);
         db.openDB();
-        db.upgradeTask(id, task, desk, status);
+        db.addProjectTask(task, desc, status, proj_id);
         db.closeDB();
     }
 }

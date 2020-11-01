@@ -48,6 +48,7 @@ public class ProjectFragment extends Fragment {
         }
 
 
+
         projects_rv = root.findViewById(R.id.projects_rv);
         adapter = new ProjectAdapter(projects);
 
