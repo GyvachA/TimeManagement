@@ -6,8 +6,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TaskTest {
-    Task test = new Task(1, "abc", "description");
-    Task test2 = new Task(0, "0", "0");
+    Task test = new Task(1, "abc", "description", 0);
+    Task test2 = new Task(0, "0", "0", 0);
     @Test
     public void setId() {
         test2.setId(1);

@@ -34,4 +34,11 @@
             android:hint="@string/hint_add_task_description"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <CalendarView
+        android:id="@+id/task_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task_description_layout"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>

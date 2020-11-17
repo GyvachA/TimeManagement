@@ -7,4 +7,6 @@
     <string name="tasks">Задачи</string>
     <string name="settings">Настройки</string>
     <string name="projects">Проекты</string>
+    <string name="start_screen">НАЧАЛЬНЫЙ ЭКРАН</string>
+    <string name="send_settings">НАСТРОЙКА УВЕДОМЛЕНИЙ</string>
 </resources>

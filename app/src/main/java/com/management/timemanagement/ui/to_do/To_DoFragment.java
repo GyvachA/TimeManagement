@@ -47,6 +47,7 @@ public class To_DoFragment extends Fragment {
         refresh();
         tasks_rv.setAdapter(adapter);
 
+
         return root;
     }
 

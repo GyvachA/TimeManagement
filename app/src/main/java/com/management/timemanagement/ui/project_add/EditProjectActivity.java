@@ -61,13 +61,13 @@ public class EditProjectActivity extends AppCompatActivity {
                         project.setCardColor(getResources().getColor(R.color.colorProj3));
                         break;
                     case R.id.color_4_btn:
-                        color[0] = getResources().getColor(R.color.colorProj4);
+                        project.setCardColor(getResources().getColor(R.color.colorProj4));
                         break;
                     case R.id.color_5_btn:
-                        color[0] = getResources().getColor(R.color.colorProj5);
+                        project.setCardColor(getResources().getColor(R.color.colorProj5));
                         break;
                     case R.id.color_6_btn:
-                        color[0] = getResources().getColor(R.color.colorProj6);
+                        project.setCardColor(getResources().getColor(R.color.colorProj6));
                         break;
                 }
             }

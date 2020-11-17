@@ -3,6 +3,7 @@ package com.management.timemanagement.ui.task_recyclerview;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksHolder> {
         holder.task_name_tv.setText(tasks.get(position).getTask());
         holder.task_desc_tv.setText(tasks.get(position).getDesc());
         holder.task_status.setChecked(false);
+
 
         holder.task_status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
