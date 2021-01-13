@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CalendarView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ import com.management.timemanagement.data.local.DBAdapter;
 public class ProjectTaskAddActivity extends AppCompatActivity {
     TextInputEditText task_name_et;
     TextInputEditText task_description_et;
+    CalendarView cv;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,9 @@ public class ProjectTaskAddActivity extends AppCompatActivity {
 
         task_name_et = findViewById(R.id.task_name_et);
         task_description_et = findViewById(R.id.task_description_et);
+        cv = findViewById(R.id.task_calendar);
+
+        cv.setVisibility(View.GONE);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

@@ -6,12 +6,18 @@ public class Task {
     private String task;
     private String desc;
     private int status;
+    private long deadline;
 
-    public Task(int id, String task, String desc, int status) {
+    public Task(int id, String task, String desc, int status, long deadline) {
         this.id = id;
         this.task = task;
         this.desc = desc;
         this.status = status;
+        this.deadline = deadline;
+    }
+
+    public Task(int id, String task, String desc, int status) {
+        this(id, task, desc, status, 0);
     }
 
     public int getId() {
@@ -44,5 +50,13 @@ public class Task {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public long getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(long deadline) {
+        this.deadline = deadline;
     }
 }

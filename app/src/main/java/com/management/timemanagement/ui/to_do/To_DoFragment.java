@@ -27,6 +27,9 @@ import com.management.timemanagement.ui.task_recyclerview.TasksAdapter;
 import com.management.timemanagement.utils.Task;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class To_DoFragment extends Fragment {
 
@@ -45,6 +48,7 @@ public class To_DoFragment extends Fragment {
         tasks_rv.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new TasksAdapter(tasks_list);
         refresh();
+        Log.d("ToDOFRAG", tasks_list.toString());
         tasks_rv.setAdapter(adapter);
 
 
@@ -96,7 +100,8 @@ public class To_DoFragment extends Fragment {
             tasks_list.add(new Task(cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2),
-                    0));
+                    0,
+                    cursor.getLong(3)));
         }
 
         db.closeDB();

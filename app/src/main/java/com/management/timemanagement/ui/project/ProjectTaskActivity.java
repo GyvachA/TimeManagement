@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,17 +11,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.management.timemanagement.R;
 import com.management.timemanagement.data.local.DBAdapter;
 import com.management.timemanagement.ui.project_rv.ProjectTaskAdapter;
-import com.management.timemanagement.ui.task_recyclerview.TasksReadyAdapter;
 import com.management.timemanagement.utils.Task;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +63,7 @@ public class ProjectTaskActivity extends AppCompatActivity {
             tasks_list.add(new Task(cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2),
-                    cursor.getInt(3)));
+                    cursor.getInt(3), cursor.getLong(4)));
         }
 
         db.closeDB();

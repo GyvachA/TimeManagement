@@ -3,11 +3,11 @@ package com.management.timemanagement.utils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.sql.Date;
 
 public class TaskTest {
-    Task test = new Task(1, "abc", "description", 0);
-    Task test2 = new Task(0, "0", "0", 0);
+    Task test = new Task(1, "abc", "description", 0, 2000);
+    Task test2 = new Task(0, "0", "0", 0, 1000);
     @Test
     public void setId() {
         test2.setId(1);

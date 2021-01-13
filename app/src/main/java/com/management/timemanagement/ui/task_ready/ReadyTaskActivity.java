@@ -10,14 +10,13 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.management.timemanagement.R;
 import com.management.timemanagement.data.local.DBAdapter;
-import com.management.timemanagement.ui.task_recyclerview.TasksAdapter;
 import com.management.timemanagement.ui.task_recyclerview.TasksReadyAdapter;
 import com.management.timemanagement.utils.Task;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 public class ReadyTaskActivity extends AppCompatActivity {
@@ -73,7 +72,8 @@ public class ReadyTaskActivity extends AppCompatActivity {
             tasks_list.add(new Task(cursor.getInt(0),
                     cursor.getString(1),
                     cursor.getString(2),
-                    0));
+                    0,
+                    cursor.getLong(3)));
         }
 
         db.closeDB();

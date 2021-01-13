@@ -9,4 +9,12 @@
     <string name="projects">Проекты</string>
     <string name="start_screen">НАЧАЛЬНЫЙ ЭКРАН</string>
     <string name="send_settings">НАСТРОЙКА УВЕДОМЛЕНИЙ</string>
+    <string name="hint_login">Никнейм</string>
+    <string name="hint_password">Пароль</string>
+    <string name="enter_str">Войти</string>
+    <string name="didnt_register">Не зарегистрированы?</string>
+    <string name="reg_str">Зарегистрироваться</string>
+    <string name="already_log">Уже зарегистрированы?</string>
+    <string name="exit_action">Выход</string>
+    <string name="questionTxt">Вопрос</string>
 </resources>

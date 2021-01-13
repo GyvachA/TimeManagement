@@ -7,18 +7,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CalendarView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.management.timemanagement.R;
 import com.management.timemanagement.data.local.DBAdapter;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 public class AddActivity extends AppCompatActivity {
 
     TextInputEditText task_name_et;
     TextInputEditText task_description_et;
+    CalendarView cv;
+    long date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +37,16 @@ public class AddActivity extends AppCompatActivity {
 
         task_name_et = findViewById(R.id.task_name_et);
         task_description_et = findViewById(R.id.task_description_et);
+        cv = findViewById(R.id.task_calendar);
+        date = cv.getDate();
+        cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(year, month, dayOfMonth);
+                date = calendar.getTimeInMillis();
+            }
+        });
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -45,16 +63,16 @@ public class AddActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
                 return true;
             case R.id.confirm:
                 String task_name = task_name_et.getText().toString();
-                if(task_name.length() == 0)
+                if (task_name.length() == 0)
                     Toast.makeText(getApplicationContext(), "Пустая задача", Toast.LENGTH_SHORT).show();
                 else {
-                    save(task_name, task_description_et.getText().toString());
+                    save(task_name, task_description_et.getText().toString(), date);
                     setResult(Activity.RESULT_OK);
                     this.finish();
                     return true;
@@ -64,10 +82,11 @@ public class AddActivity extends AppCompatActivity {
         }
     }
 
-    public void save(String task, String description) {
+    public void save(String task, String description, long date) {
         DBAdapter db = new DBAdapter(this);
         db.openDB();
-        db.add(task, description, 0);
+        Log.d("CALENDAR", String.valueOf(date));
+        db.add(task, description, 0, date);
         db.closeDB();
     }
 }

@@ -18,6 +18,9 @@ import android.util.Log;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputEditText;
+import com.management.timemanagement.data.local.SessionManager;
+import com.management.timemanagement.ui.authorization.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         bottomNavigationView = findViewById(R.id.bottom_nav_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         int rID = R.id.nav_to_do;
@@ -36,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 rID = R.id.nav_project;
                 break;
         }
+
+
         navController.navigate(rID);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_to_do, R.id.nav_project, R.id.nav_settings

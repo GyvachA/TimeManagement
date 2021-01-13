@@ -9,20 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.project.ProjectTaskActivity"></activity>
-        <activity android:name=".ui.task_add.EditTaskActivity" />
-        <activity android:name=".ui.project_add.EditProjectActivity" />
-        <activity android:name=".ui.task_ready.ReadyTaskActivity" />
-        <activity android:name=".ui.task_add.AddActivity" />
-        <activity android:name=".ui.project_add.AddProjectActivity" />
-        <activity android:name=".ui.project.ProjectTaskAddActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.answers.QAActivity"></activity>
+        <activity android:name=".ui.authorization.RegisterActivity" />
+        <activity android:name=".ui.authorization.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.project.ProjectTaskActivity" />
+        <activity android:name=".ui.task_add.EditTaskActivity" />
+        <activity android:name=".ui.project_add.EditProjectActivity" />
+        <activity android:name=".ui.task_ready.ReadyTaskActivity" />
+        <activity android:name=".ui.task_add.AddActivity" />
+        <activity android:name=".ui.project_add.AddProjectActivity" />
+        <activity android:name=".ui.project.ProjectTaskAddActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

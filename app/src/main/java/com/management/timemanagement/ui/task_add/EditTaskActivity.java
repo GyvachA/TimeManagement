@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CalendarView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -15,11 +16,16 @@ import com.management.timemanagement.R;
 import com.management.timemanagement.data.local.DBAdapter;
 import com.management.timemanagement.utils.Task;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 public class EditTaskActivity extends AppCompatActivity {
 
     TextInputEditText task_name_et;
     TextInputEditText task_description_et;
     Task task;
+    CalendarView cv;
+    long date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +37,22 @@ public class EditTaskActivity extends AppCompatActivity {
         task_description_et = findViewById(R.id.task_description_et);
 
         task = new Task(getIntent().getIntExtra("id", -1), getIntent().getStringExtra("task"),
-                getIntent().getStringExtra("desc"), 0);
+                getIntent().getStringExtra("desc"), 0, getIntent().getLongExtra("deadline", 0));
 
         task_name_et.setText(task.getTask());
         task_description_et.setText(task.getDesc());
+
+        cv = findViewById(R.id.task_calendar);
+        cv.setDate(task.getDeadline());
+        date = cv.getDate();
+        cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(year, month, dayOfMonth);
+                date = calendar.getTimeInMillis();
+            }
+        });
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -61,7 +79,7 @@ public class EditTaskActivity extends AppCompatActivity {
                 if(task.getTask().length() == 0)
                     Toast.makeText(getApplicationContext(), "Пустая задача", Toast.LENGTH_SHORT).show();
                 else {
-                    upgrade(task.getId(), task.getTask(), task.getDesc(), 0);
+                    upgrade(task.getId(), task.getTask(), task.getDesc(), 0, date);
                     setResult(Activity.RESULT_OK);
                     this.finish();
                     return true;
@@ -71,10 +89,10 @@ public class EditTaskActivity extends AppCompatActivity {
         }
     }
 
-    private void upgrade(int id, String task, String desk, int status) {
+    private void upgrade(int id, String task, String desk, int status, long deadline) {
         DBAdapter db = new DBAdapter(this);
         db.openDB();
-        db.upgradeTask(id, task, desk, status);
+        db.upgradeTask(id, task, desk, status, deadline);
         db.closeDB();
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.preference.PreferenceScreen
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
     <ListPreference
         app:dialogTitle="Выберите начальный экран"
         app:entries="@array/settings_list_preference_screens"
@@ -8,5 +9,5 @@
         app:key="start_screen_list"
         app:title="Начальный экран"
         app:summary="Нажмите, чтобы выбрать начальный экран"
-        />
+        app:icon="@drawable/start_screen" />
 </androidx.preference.PreferenceScreen>

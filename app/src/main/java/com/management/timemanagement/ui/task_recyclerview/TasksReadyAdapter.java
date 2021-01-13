@@ -44,7 +44,7 @@ public class TasksReadyAdapter extends RecyclerView.Adapter<TasksReadyAdapter.Ta
                 int pos = holder.getAdapterPosition();
 
                 if(pos != -1){
-                    upgrade(pos, tasks.get(pos).getTask(), tasks.get(pos).getDesc(), 0);
+                    upgrade(pos, tasks.get(pos).getTask(), tasks.get(pos).getDesc(), 0, tasks.get(pos).getDeadline());
                 }
             }
         });
@@ -80,10 +80,10 @@ public class TasksReadyAdapter extends RecyclerView.Adapter<TasksReadyAdapter.Ta
         }
     }
 
-    private void upgrade(int pos, String task, String desk, int status) {
+    private void upgrade(int pos, String task, String desk, int status, long deadline) {
         DBAdapter db = new DBAdapter(c);
         db.openDB();
-        db.upgradeTask(tasks.get(pos).getId(), task, desk, status);
+        db.upgradeTask(tasks.get(pos).getId(), task, desk, status, deadline);
         db.closeDB();
         tasks.remove(pos);
         notifyItemRemoved(pos);
