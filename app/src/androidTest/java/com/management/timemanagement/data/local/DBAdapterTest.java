@@ -5,10 +5,7 @@ import android.database.Cursor;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class DBAdapterTest {
     DBAdapter adapter = new DBAdapter(InstrumentationRegistry.getInstrumentation().getTargetContext());
@@ -46,13 +43,13 @@ public class DBAdapterTest {
         cursor.moveToNext();
         int id = cursor.getInt(0);
         Assert.assertNotNull(cursor);
-        adapter.delete(id);
+        adapter.deleteTask(id);
         adapter.closeDB();
     }
     @Test
     public void delete() {
         adapter.openDB();
-        Assert.assertNotEquals(adapter.delete(1234), 0);
+        Assert.assertNotEquals(adapter.deleteTask(1234), 0);
         adapter.closeDB();
     }
 

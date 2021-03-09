@@ -1,7 +1,6 @@
 name: Release
 
 # Action will run on every pull-request to master branch
-# 05.10.2020: release app can't be signed now, so it builds debug version. It will be fixed at the next sprint
 on:
   pull_request:
     branches:
@@ -19,5 +18,18 @@ jobs:
         with:
           java-version: 1.8
           
-      - name: Assemble debug version
-        run: bash ./gradlew AssembleDebug
+      - name: Take version code
+        run: echo VERSION_CODE=${{ github.run_number }} > ./version.properties
+
+      - name: Build with Gradle
+        run: bash ./gradlew assembleRelease
+        env:
+          RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: TimeManagement
+          path: app/build/outputs/apk/release/timemanagement.release.apk

@@ -27,6 +27,9 @@ import com.management.timemanagement.ui.task_recyclerview.TasksAdapter;
 import com.management.timemanagement.utils.Task;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class To_DoFragment extends Fragment {
 
@@ -45,7 +48,9 @@ public class To_DoFragment extends Fragment {
         tasks_rv.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new TasksAdapter(tasks_list);
         refresh();
+        Log.d("ToDOFRAG", tasks_list.toString());
         tasks_rv.setAdapter(adapter);
+
 
         return root;
     }
@@ -66,7 +71,7 @@ public class To_DoFragment extends Fragment {
                 return true;
             case R.id.ready_list:
                 intent = new Intent(getActivity(), ReadyTaskActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -76,7 +81,7 @@ public class To_DoFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && requestCode == 1) {
+        if (resultCode == Activity.RESULT_OK && (requestCode == 1 || requestCode == 2)) {
             refresh();
             adapter.notifyDataSetChanged();
         }
@@ -94,7 +99,9 @@ public class To_DoFragment extends Fragment {
         while(cursor.moveToNext()) {
             tasks_list.add(new Task(cursor.getInt(0),
                     cursor.getString(1),
-                    cursor.getString(2)));
+                    cursor.getString(2),
+                    0,
+                    cursor.getLong(3)));
         }
 
         db.closeDB();

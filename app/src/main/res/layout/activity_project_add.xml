@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    >
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/task_name_layout"
+        app:boxBackgroundColor="@color/actionbar_text_color"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/project_name_et"
@@ -13,4 +19,55 @@
             android:hint="@string/hint_add_task_name"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-</RelativeLayout>
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/color_group_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:singleSelection="true"
+        app:selectionRequired="true">
+        <Button
+            android:id="@+id/color_1_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/colorProj1"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            />
+        <Button
+            android:id="@+id/color_2_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/colorProj2"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            />
+        <Button
+            android:id="@+id/color_3_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/colorProj3"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            />
+        <Button
+            android:id="@+id/color_4_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/colorProj4"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            />
+        <Button
+            android:id="@+id/color_5_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/colorProj5"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            />
+        <Button
+            android:id="@+id/color_6_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/colorProj6"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+</LinearLayout>

@@ -24,7 +24,6 @@ import com.management.timemanagement.R;
 import com.management.timemanagement.data.local.DBAdapter;
 import com.management.timemanagement.ui.project_add.AddProjectActivity;
 import com.management.timemanagement.ui.project_rv.ProjectAdapter;
-import com.management.timemanagement.ui.task_add.AddActivity;
 import com.management.timemanagement.utils.Project;
 
 import java.util.ArrayList;
@@ -38,7 +37,6 @@ public class ProjectFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ProjectViewModel settingsViewModel = new ViewModelProvider(this).get(ProjectViewModel.class);
         View root = inflater.inflate(R.layout.fragment_project, container, false);
         setHasOptionsMenu(true);
         refresh();
@@ -48,6 +46,7 @@ public class ProjectFragment extends Fragment {
             actionBar.setHomeButtonEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(false);
         }
+
 
 
         projects_rv = root.findViewById(R.id.projects_rv);
@@ -88,7 +87,7 @@ public class ProjectFragment extends Fragment {
 
         while(cursor.moveToNext()) {
             projects.add(new Project(cursor.getInt(0),
-                    cursor.getString(1),
+                    cursor.getInt(1),
                     cursor.getString(2),
                     cursor.getInt(3)));
         }

@@ -1,29 +1,64 @@
 apply plugin: 'com.android.application'
 
+def release_store_password
+def release_key_password
+def release_key_alias
+
+def buildNumber = Integer.parseInt(System.getenv("GITHUB_RUN_NUMBER") ?: "1")
+def keystoreProperties = new Properties()
+release_store_password = System.env.RELEASE_STORE_PASSWORD
+release_key_password = System.env.RELEASE_KEY_PASSWORD
+release_key_alias = System.env.RELEASE_KEY_ALIAS
+
+def versionPropsFile = rootProject.file('version.properties')
+Properties versionProps = new Properties()
+versionProps.load(new FileInputStream(versionPropsFile))
+def verCode = versionProps['VERSION_CODE'].toInteger()
+
 android {
     compileSdkVersion 29
+    ndkVersion '21.3.6528147'
 
     defaultConfig {
         applicationId "com.management.timemanagement"
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode verCode
+        versionName "1.0.$verCode"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        applicationVariants.all { variant ->
+            variant.outputs.each { output ->
+                def buildType = variant.buildType.name
+                output.outputFileName = "timemanagement" + "." + buildType + ".apk"
+            }
+        }
+    }
+
+    signingConfigs {
+        release {
+           storeFile file("release.keystore")
+           storePassword release_store_password
+           keyAlias release_key_password
+           keyPassword release_key_alias
+       }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.preference:preference:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.navigation:navigation-fragment:2.3.0'
